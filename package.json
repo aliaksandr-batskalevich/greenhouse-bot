@@ -1,0 +1,22 @@
+{
+  "name": "telegram-bot",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon telegram-bot.js",
+    "start": "node telegram-bot.js"
+  },
+  "dependencies": {
+    "@grammyjs/commands": "^1.0.5",
+    "@grammyjs/parse-mode": "^1.11.1",
+    "@grammyjs/stateless-question": "^4.0.0",
+    "axios": "^1.7.9",
+    "dotenv": "^16.3.1",
+    "grammy": "^1.35.0",
+    "grammy-inline-menu": "^9.2.0",
+    "nodemon": "^3.0.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "prettier": "3.5.2"
+  }
+}
