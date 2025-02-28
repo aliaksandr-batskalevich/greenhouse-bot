@@ -27,6 +27,7 @@ import tempSensorEdit, {
   editTempSensorMinTempQuestion,
   editTempSensorMaxTempQuestion,
 } from './menu/temp-sensor-edit.menu.js';
+import tempSensorsListSimple from './menu/temp-sensor-list-simple.menu.js';
 
 const bot = new Bot(configs.bot.token);
 
@@ -42,12 +43,14 @@ bot.use(whiteListMiddleware);
 bot.use(confirmNotification);
 bot.use(disableNotificationTag);
 
-bot.use(new MenuMiddleware('temp-sensors/', tempSensors).middleware());
-
 const menuMiddleware = new MenuMiddleware('/', mainMenu);
 
 const commands = new CommandGroup();
-
+commands
+  .command('temp_ivatsevichi', 'Темп. Ивацевичи')
+  .addToScope({ type: 'default' }, ctx =>
+    replyMenuToContext(tempSensorsListSimple, ctx, '/temp-list-simple:ivatsevichi/'),
+  );
 commands
   .command('start', 'Start')
   .addToScope({ type: 'default' }, ctx => menuMiddleware.replyToContext(ctx));
@@ -69,6 +72,7 @@ await commands.setCommands(bot);
 bot.use(commands);
 bot.use(menuMiddleware);
 
+bot.use(new MenuMiddleware('temp-sensors/', tempSensors).middleware());
 bot.use(new MenuMiddleware('greenhouse-new/', greenhouseNew).middleware());
 bot.use(new MenuMiddleware('temp-sensor-new/', tempSensorNew).middleware());
 bot.use(new MenuMiddleware('temp-sensor-new/', tempSensorNew).middleware());
