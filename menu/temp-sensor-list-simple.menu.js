@@ -19,7 +19,6 @@ const tempSensorsListSimple = new MenuTemplate(async (ctx, path) => {
   ctx['session']['tempSensors'] = sensors;
 
   for (const sensor of sensors) {
-    sensor['delta'] = 12.44;
     const label = sensor['active'] ? '🟢' : '🔴';
     text += `${label} "${sensor['name']}" - *${sensor['lastTemp'] ? sensor['lastTemp'] + '°' : '🚫'}*`;
     if (sensor['delta'] !== undefined) {
